@@ -1,5 +1,5 @@
 ## 概要
-AION環境で RedisClusterを立ち上げ、稼働させるマイクロサービスです。  
+AION環境で RedisClusterを立ち上げ稼働させるための、概要説明です。  
 AIONでは、envoy上に redis-cluster が構築されています。  
 envoy上でのredis-cluster構築設定については、下記、もしくは、aion-core-manifest の generated 下にある default.yml を参照してください。   
 
