@@ -1,16 +1,58 @@
 ## 概要
-Kubernetes上でRedis-clusterを立ち上げるためのマイクロサービスです。立ち上げに必要なマニフェストファイルが入っています。
+AION環境で RedisClusterを立ち上げ、稼働させるマイクロサービスです。  
+AIONでは、envoy上に redis-cluster が構築されています。  
+envoy上でのredis-cluster構築設定については、下記、もしくは、aion-core-manifest の generated 下にある default.yml を参照してください。   
 
 ## 動作環境
-redis-cluster-kubeは、kubernetes上での動作を前提としています。 kubernetesの環境構築後に起動してください。
-
-## マニフェストファイルの仕様
-- ポート: 6379
-- コンテナイメージ: redis:6.0-rc-alpine3.11
+・ OS : Linux OS  
+・ CPU: ARM/AMD/Intel  
+・ Kubernetes  
+・ AION  
 
 ## Redisについて
-Redisは、オプションの耐久性を備えた分散メモリ内キー値データベースを実装するメモリ内データ構造プロジェクトです。
+Redisは、柔軟性と耐久性を兼ね備えた、インメモリキャッシュ技術とキーバリューデータベースが組み合わされた、プロジェクトリソースです。
 
-AIONは、エッジkubernetesクラスターで実行されるアプリケーションをスムーズに実行するエッジコンピューティングを支える、重要なエッジキャッシュテクノロジーとして、Redisを提供します。
+AIONは、エッジネットワーククラスター環境での重要なエッジキャッシュDBテクノロジーとして、Redisを基礎インフラ環境として提供します。
 
 エッジ環境はスペックの制限があるため、LatonaおよびAIONでは、機能性とパフォーマンスのバランスに優れているRedisを採用しています。
+
+## ymlファイルの中身（aion-core-manifest内のgenerated下にあるdefault.ymlを参照） 
+
+```      
+apiVersion: v1
+data:
+  envoy.yaml: |
+    static_resources:
+      listeners:
+      - name: redis_listener
+        address:
+          socket_address:
+            address: 0.0.0.0
+            port_value: 1999
+        filter_chains:
+        - filters:
+          - name: envoy.filters.network.redis_proxy
+            typed_config:
+              "@type": type.googleapis.com/envoy.config.filter.network.redis_proxy.v2.RedisProxy
+              stat_prefix: egress_redis
+              settings:
+                op_timeout: 5s
+              prefix_routes:
+                catch_all_route:
+                  cluster: redis_cluster
+      clusters:
+      - name: redis_cluster
+        connect_timeout: 1s
+        type: strict_dns # static
+        lb_policy: MAGLEV
+        load_assignment:
+          cluster_name: redis_cluster
+          endpoints:
+          - lb_endpoints:
+            - endpoint:
+                address:
+                  socket_address:
+                    address: redis
+                    port_value: 6379
+
+```
