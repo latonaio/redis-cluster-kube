@@ -1,6 +1,6 @@
 ## 概要
 AION環境で RedisClusterを立ち上げ稼働させるための、概要説明です。    
-redis-cluster構築設定については、下記、もしくは、aion-core-manifests の template>bases>redis 下にある deployment.yml を参照してください。   
+redis-cluster構築設定については、下記、もしくは、aion-core-manifests/template/bases/redis/deployment.yml を参照してください。   
 
 ## 動作環境
 ・ OS : Linux OS  
