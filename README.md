@@ -17,7 +17,7 @@ AIONは、エッジネットワーククラスター環境での重要なエッ�
 
 
 ## AION における Redis のデプロイ・稼働
-[aion-core-manifests](https://github.com/latonaio/aion-core-manifests)の template>bases>redis の deployment.yml に redis-cluster をデプロイ・稼働させるために必要なyamlファイルが配置されています。
+[aion-core-manifests](https://github.com/latonaio/aion-core-manifests)の template/bases/redis/deployment.yml に redis-cluster をデプロイ・稼働させるために必要なyamlファイルが配置されています。
 
 ymlファイル（deployment.yml）の中身
 ```      
