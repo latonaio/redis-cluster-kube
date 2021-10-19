@@ -1,5 +1,5 @@
-## 概要
-AION環境で RedisClusterを立ち上げ稼働させるための、概要説明です。    
+# redis-cluster-kube
+redis-cluster-kubeは、AION環境で RedisClusterを立ち上げ稼働させるための、概要説明です。    
 redis-cluster構築設定については、下記、もしくは、aion-core-manifests/template/bases/redis/deployment.yml を参照してください。   
 
 ## 動作環境
