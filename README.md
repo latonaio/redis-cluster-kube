@@ -1,12 +1,11 @@
 # redis-cluster-kube
-redis-cluster-kubeは、主にエッジコンピューティング環境において Kubernetes 上 で RedisClusterを立ち上げ稼働させるための、概要説明です。    
+redis-cluster-kube は、主にエッジコンピューティング環境において Kubernetes 上 で RedisClusterを立ち上げ稼働させるための、概要説明と設定ファイルです。    
 redis-cluster 構築設定については、下記、もしくは、aion-core-manifests/template/bases/redis/deployment.yml を参照してください。   
 
 ## 動作環境
 ・ OS : Linux OS  
 ・ CPU: ARM/AMD/Intel  
 ・ Kubernetes  
-・ AION  
 
 ## Redisについて
 Redisは、柔軟性と耐久性を兼ね備えた、インメモリキャッシュ技術とキーバリューデータベースが組み合わされた、プロジェクトリソースです。
