@@ -1,6 +1,6 @@
 # redis-cluster-kube
-redis-cluster-kubeは、AION環境で RedisClusterを立ち上げ稼働させるための、概要説明です。    
-redis-cluster構築設定については、下記、もしくは、aion-core-manifests/template/bases/redis/deployment.yml を参照してください。   
+redis-cluster-kubeは、主にエッジコンピューティング環境において Kubernetes 上 で RedisClusterを立ち上げ稼働させるための、概要説明です。    
+redis-cluster 構築設定については、下記、もしくは、aion-core-manifests/template/bases/redis/deployment.yml を参照してください。   
 
 ## 動作環境
 ・ OS : Linux OS  
@@ -17,6 +17,7 @@ AIONは、エッジネットワーククラスター環境での重要なエッ�
 
 
 ## AION における Redis のデプロイ・稼働
+AION において Redis をデプロイ・稼働させる場合、  
 [aion-core-manifests](https://github.com/latonaio/aion-core-manifests)の template/bases/redis/deployment.yml に redis-cluster をデプロイ・稼働させるために必要なyamlファイルが配置されています。
 
 ymlファイル（deployment.yml）の中身
@@ -37,7 +38,7 @@ spec:
         app: redis-cluster
     spec:
       containers:
-        - image: redis:6.0-rc-alpine3.11
+        - image: redis:6.2-rc-alpine3.14
           name: redis-cluster
           args:
             - --timeout
